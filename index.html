@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casino Royale</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#d4af37" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #d4af37;
+      --black: #000;
+      --dark: #0b0b0b;
+      --white: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: radial-gradient(circle at top, #1a1a1a, #000);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      padding: 2rem 1rem 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      color: var(--gold);
+      letter-spacing: 2px;
+    }
+
+    header p {
+      opacity: 0.8;
+      margin-top: 0.5rem;
+    }
+
+    nav {
+      margin: 1.5rem 0;
+      display: flex;
+      gap: 1rem;
+    }
+
+    nav button {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    nav button:hover {
+      background: var(--gold);
+      color: #000;
+      box-shadow: 0 0 15px rgba(212,175,55,0.6);
+    }
+
+    main {
+      width: 100%;
+      max-width: 1100px;
+      padding: 1rem;
+      flex: 1;
+    }
+
+    section {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    .card {
+      background: linear-gradient(145deg, #0f0f0f, #050505);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      border: 1px solid rgba(212,175,55,0.15);
+    }
+
+    footer {
+      padding: 1rem;
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Casino Royale</h1>
+  <p>Elegant. Classy. Virtual Casino Experience.</p>
+</header>
+
+<nav>
+  <button onclick="showSection('home')">Home</button>
+  <button onclick="showSection('about')">About</button>
+  <button onclick="showSection('games')">Games</button>
+</nav>
+
+<main>
+  <section id="home" class="active">
+    <div class="card">
+      <h2>Welcome</h2>
+      <p>Experience a premium casino-style platform built for entertainment using a fake chips economy. Play elegant games, earn VIP ranks, and enjoy a polished mobile-first experience.</p>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="card">
+      <h2>About Casino Royale</h2>
+      <p>Casino Royale is a web-based casino-inspired platform featuring classic games like Blackjack, Roulette, and Slots — all powered by virtual currency only.</p>
+      <p>No real money. No gambling. Just style and strategy.</p>
+    </div>
+  </section>
+
+  <section id="games">
+    <div class="card">
+      <h2>Games</h2>
+      <ul>
+        <li>🃏 Blackjack</li>
+        <li>🎡 Roulette</li>
+        <li>🎰 Slots</li>
+      </ul>
+      <p>Multiplayer-ready. Animated. Mobile-first.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © Casino Royale — Virtual Entertainment Only
+</footer>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  // Register Service Worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+  }
+</script>
+
+</body>
+</html>
